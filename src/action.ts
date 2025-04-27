@@ -38,6 +38,7 @@ async function action(octokit: CustomOctokit) {
 
   info(`Labels to be set: ${labels}`);
   info(`Used policy: ${JSON.stringify(labeler.outputPolicy, null, 2)}`);
+  info(`Target issue: ${issueNumber}`);
 
   const response = await octokit.request(
     'POST /repos/{owner}/{repo}/issues/{issue_number}/labels',
