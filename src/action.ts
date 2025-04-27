@@ -17,6 +17,9 @@ async function action(octokit: CustomOctokit) {
       `Incorrect format of provided 'issue-form' input: ${parsedIssueForm.error.message}`
     );
   }
+  const inputIssueNumber = getInput('issue-number', { required: false });
+  const issueNumber = inputIssueNumber ? parseInt(inputIssueNumber) : context.issue.number;
+  
   const issueForm = new IssueForm(parsedIssueForm.data);
   const config = await Config.getConfig(octokit);
 
@@ -40,7 +43,7 @@ async function action(octokit: CustomOctokit) {
     'POST /repos/{owner}/{repo}/issues/{issue_number}/labels',
     {
       ...context.repo,
-      issue_number: context.issue.number,
+      issue_number: issueNumber,
       labels,
     }
   );
