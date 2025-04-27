@@ -10,6 +10,10 @@ inputs:
     required: true
     description: Representation of issue form in JSON type
 
+  issue-number:
+    required: false
+    description: The issue's number
+
   template:
     required: false
     default: ''
